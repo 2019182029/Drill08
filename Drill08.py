@@ -41,11 +41,16 @@ def reset_world():
     global running
     global grass
     global big_ball, small_ball
+    global balls
 
     running = True
+
     grass = Grass()
-    big_ball = [BigBall() for i in range(1, random.randint(1, 20))]
+    big_ball = [BigBall() for i in range(1, random.randint(1, 19))]
     small_ball = [SmallBall() for i in range(1, 20 - len(big_ball))]
+
+    balls = []
+    balls = balls + big_ball + small_ball
 
 
 def handle_events():
@@ -59,19 +64,15 @@ def handle_events():
 
 
 def update_world():
-    for i in range(len(big_ball)):
-        big_ball[i].update()
-    for i in range(len(small_ball)):
-        small_ball[i].update()
+    for o in balls:
+        o.update()
 
 
 def render_world():
     clear_canvas()
     grass.draw()
-    for i in range(len(big_ball)):
-        big_ball[i].draw()
-    for i in range(len(small_ball)):
-        small_ball[i].draw()
+    for o in balls:
+        o.draw()
     update_canvas()
 
 
