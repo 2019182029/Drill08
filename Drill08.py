@@ -1,16 +1,41 @@
 from pico2d import *
 
 
-def load_resources():
-    pass
+class Grass():
+    def __init__(self):
+        self.image = load_image('grass.png')
+
+    def draw(self):
+        self.image.draw(400, 30)
+
+
+class BigBall():
+    def __init__(self):
+        self.image = load_image('ball41x41.png')
+        self.x, self.y = (400, 200)
+
+    def draw(self):
+        self.image.draw(self.x, self.y)
+
+
+class SmallBall():
+    def __init__(self):
+        self.image = load_image('ball21x21.png')
+        self.x, self.y = (400, 300)
+
+    def draw(self):
+        self.image.draw(self.x, self.y)
 
 
 def reset_world():
     global running
+    global grass
+    global big_ball, small_ball
 
     running = True
-
-    open_canvas()
+    grass = Grass()
+    big_ball = BigBall()
+    small_ball = SmallBall()
 
 
 def handle_events():
@@ -28,8 +53,15 @@ def update_world():
 
 
 def render_world():
-    pass
+    clear_canvas()
+    grass.draw()
+    big_ball.draw()
+    small_ball.draw()
+    update_canvas()
 
+
+open_canvas()
+reset_world()
 
 while (running):
     handle_events()
