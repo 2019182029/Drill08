@@ -35,7 +35,7 @@ def reset_world():
 
     running = True
     grass = Grass()
-    big_ball = BigBall()
+    big_ball = [BigBall() for i in range(20)]
     small_ball = SmallBall()
 
 
@@ -56,7 +56,8 @@ def update_world():
 def render_world():
     clear_canvas()
     grass.draw()
-    big_ball.draw()
+    for i in range(20):
+        big_ball[i].draw()
     # small_ball.draw()
     update_canvas()
 
