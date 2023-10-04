@@ -22,7 +22,8 @@ class BigBall():
         self.image.draw(self.x, self.y)
 
     def update(self):
-        self.y -= 1
+        if(self.y != 30 + 41):
+            self.y -= 1
 
 
 class SmallBall():
@@ -34,7 +35,8 @@ class SmallBall():
         self.image.draw(self.x, self.y)
 
     def update(self):
-        self.y -= 1
+        if(self.y != 30 + 31):
+          self.y -= 1
 
 
 def reset_world():
