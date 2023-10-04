@@ -22,7 +22,7 @@ class BigBall():
 class SmallBall():
     def __init__(self):
         self.image = load_image('ball21x21.png')
-        self.x, self.y = (400, 300)
+        self.x, self.y = (random.randint(50, 750), 599)
 
     def draw(self):
         self.image.draw(self.x, self.y)
@@ -35,8 +35,8 @@ def reset_world():
 
     running = True
     grass = Grass()
-    big_ball = [BigBall() for i in range(20)]
-    small_ball = SmallBall()
+    big_ball = [BigBall() for i in range(1, random.randint(1, 20))]
+    small_ball = [SmallBall() for i in range(1, 20 - len(big_ball))]
 
 
 def handle_events():
@@ -56,9 +56,12 @@ def update_world():
 def render_world():
     clear_canvas()
     grass.draw()
-    for i in range(20):
+    for i in range(len(big_ball)):
         big_ball[i].draw()
-    # small_ball.draw()
+        print("BIG")
+    for i in range(len(small_ball)):
+        small_ball[i].draw()
+        print("SMALL")
     update_canvas()
 
 
@@ -69,3 +72,5 @@ while (running):
     handle_events()
     update_world()
     render_world()
+
+    delay(10)
