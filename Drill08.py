@@ -17,26 +17,32 @@ class BigBall():
     def __init__(self):
         self.image = load_image('ball41x41.png')
         self.x, self.y = (random.randint(50, 750), 599)
+        self.fall_speed = random.randint(10, 100) / 10  # 각 공의 떨어지는 속도를 다양하기 만들기 위함
 
     def draw(self):
         self.image.draw(self.x, self.y)
 
     def update(self):
-        if(self.y != 30 + 41):
-            self.y -= 1
+        if (self.y > 30 + 41):
+            self.y -= self.fall_speed
+        else:
+            self.y = 30 + 41
 
 
 class SmallBall():
     def __init__(self):
         self.image = load_image('ball21x21.png')
         self.x, self.y = (random.randint(50, 750), 599)
+        self.fall_speed = random.randint(10, 100) / 10
 
     def draw(self):
         self.image.draw(self.x, self.y)
 
     def update(self):
-        if(self.y != 30 + 31):
-          self.y -= 1
+        if (self.y > 30 + 31):
+            self.y -= self.fall_speed
+        else:
+            self.y = 30 + 31
 
 
 def reset_world():
@@ -85,3 +91,5 @@ while (running):
     handle_events()
     update_world()
     render_world()
+
+    delay(0.01)
